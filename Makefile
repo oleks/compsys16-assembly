@@ -1,8 +1,8 @@
 .PHONY: all clean
 
-SRC=$(patsubst %.S,%.bin,$(wildcard asm/*.S))
+BIN=$(patsubst %.S,%.bin,$(wildcard asm/*.S))
 
-all: $(SRC)
+all: $(BIN)
 
 %.o: %.S Makefile
 	as -o $@ --fatal-warnings -g $<
