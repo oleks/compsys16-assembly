@@ -1,14 +1,14 @@
 .PHONY: all clean diso diself
 
-SRC=$(patsubst %.S,%.elf,$(wildcard *.S))
+SRC=$(patsubst %.S,%.elf,$(wildcard asm/*.S))
 
-OBJS=$(wildcard *.o)
-ELFS=$(wildcard *.elf)
+OBJS=$(wildcard asm/*.o)
+ELFS=$(wildcard asm/*.elf)
 
 all: $(SRC)
 
-%.elf: %.S
-	as -o $*.o --fatal-warnings $*.S
+%.elf: %.S Makefile
+	as -o $*.o --fatal-warnings -g $*.S
 	ld -o $*.elf --entry=main $*.o
 
 diso:
@@ -18,5 +18,5 @@ diself:
 	objdump -d $(ELFS)
 
 clean:
-	rm -f *.o
-	rm -f *.elf
+	rm -f $(OBJS)
+	rm -f $(ELFS)
