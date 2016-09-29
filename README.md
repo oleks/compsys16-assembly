@@ -49,8 +49,6 @@ line.
 To validate how the stack behaves proceed as follows:
 
 ~~~
-  Breakpoint 1, main () at asm/3.27.S:14
-  14    callq top
   (gdb) p $rsp
   $1 = (void *) 0x7fffffffdaf0
   (gdb) s
