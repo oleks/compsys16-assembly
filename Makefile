@@ -9,10 +9,10 @@ all: $(SRC)
 	ld -o $*.bin --entry=main $*.o
 
 dump-%.o: asm/%.S Makefile asm/%.o
-	objdump -d asm/$*.o
+	objdump -d --source -M no-aliases asm/$*.o
 
 dump-%.bin: asm/%.S Makefile asm/%.bin
-	objdump -d asm/$*.bin
+	objdump -d --source -M no-aliases asm/$*.bin
 
 gdb-%.bin: asm/%.S Makefile asm/%.bin
 	gdb -q -x run.gdb asm/$*.bin
