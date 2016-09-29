@@ -8,11 +8,14 @@ all: $(SRC)
 	as -o $*.o --fatal-warnings -g $*.S
 	ld -o $*.bin --entry=main $*.o
 
-dump-%.o: asm/%.S Makefile
+dump-%.o: asm/%.S Makefile asm/%.o
 	objdump -d asm/$*.o
 
-dump-%.bin: asm/%.S Makefile
+dump-%.bin: asm/%.S Makefile asm/%.bin
 	objdump -d asm/$*.bin
+
+gdb-%.bin: asm/%.S Makefile asm/%.bin
+	gdb -q -x run.gdb asm/$*.bin
 
 clean:
 	rm -f asm/*.o
