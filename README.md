@@ -49,11 +49,11 @@ line.
 To validate how the stack behaves proceed as follows:
 
 ~~~
-  (gdb) p $rsp
+  (gdb) print $rsp
   $1 = (void *) 0x7fffffffdaf0
-  (gdb) s
+  (gdb) step
   top () at asm/3.27.S:8
   8   sub $0x5, %rdi
-  (gdb) p $rsp
+  (gdb) print $rsp
   $2 = (void *) 0x7fffffffdae8
 ~~~
