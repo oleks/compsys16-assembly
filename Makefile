@@ -8,13 +8,13 @@ all: $(SRC)
 	as -o $*.o --fatal-warnings -g $*.S
 	ld -o $*.bin --entry=main $*.o
 
-dump-%.o: asm/%.S Makefile asm/%.o
+dump-%.o: asm/%.o Makefile
 	objdump --source -M no-aliases asm/$*.o
 
-dump-%.bin: asm/%.S Makefile asm/%.bin
+dump-%.bin: asm/%.bin Makefile
 	objdump --source -M no-aliases asm/$*.bin
 
-gdb-%.bin: asm/%.S Makefile asm/%.bin
+gdb-%.bin: asm/%.bin Makefile
 	gdb -q -x run.gdb asm/$*.bin
 
 clean:
